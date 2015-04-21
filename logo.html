@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Efly logo</title>
+	<script>
+	var canvas;
+	var context;
+	var firstLineI = 68;
+	var secondLineI = 152;
+	var thirdLineI = 172;
+	var dec1=-25,dec2=-75,dec3=-125,dec4=-175,dec5=675,dec6=625,dec7=575,dec8=525,dec9=475,dec10=425;
+	var swh1=0;
+	var swh2=0;
+	var swh3=0;
+	var swh4=0;
+	var swh5=0;
+	var num1 = 0;
+	var num2 = 1;
+	var num3 = 0;
+	var num4 = 0;
+	var num5 = 0;
+
+	var y41,x41;
+	var searchLight = {x:200,y:300,radius:50,vx:Math.random()*10+10,vy:Math.random()*10+10};
+	window.onload=function(){
+		canvas = document.getElementById("canvas");
+		canvas.width = 400;
+		canvas.height = 400;
+		context = canvas.getContext("2d");
+		context.beginPath();
+		
+		setInterval( //实时刷新
+			function(){
+				render();
+				update();
+			},50
+		);
+		function render(){
+			//************绘制黑色画布
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.fillStyle = "black";
+			context.fillRect(0,0,400,400);
+			//************绘制白射线
+			if(swh1 != 1){
+			context.beginPath();
+			context.moveTo(68,228);
+			context.lineTo(firstLineI,-firstLineI*217/232+228+68*217/232);
+			context.closePath();
+			context.strokeStyle = "white";
+			context.lineWidth = 1;
+			context.stroke();
+			
+
+			context.beginPath();
+			context.moveTo(152,229);
+			context.lineTo(secondLineI,-secondLineI*95/177+229+152*95/177);
+			context.closePath();
+			context.strokeStyle = "white";
+			context.lineWidth = 1;
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(172,236);
+			context.lineTo(Math.round(thirdLineI),Math.round(thirdLineI*7/83+234-172*7/84));
+			context.closePath();
+			context.strokeStyle = "white";
+			context.lineWidth = 1;
+			context.stroke();
+			}
+
+			if(swh1 == 1){
+
+				if(swh3 == 1){
+				//*****************遮罩效果
+				context.clearRect(0,0,canvas.width,canvas.height);
+				context.save();
+
+				context.beginPath();
+				context.fillStyle = "black";
+				context.fillRect(0,0,canvas.width,canvas.height);
+
+				context.beginPath();
+				context.arc(searchLight.x,searchLight.y,searchLight.radius,0,2*Math.PI);
+				context.fillStyle = "#fff";
+				context.fill();
+				context.clip();
+
+				var linearGrad = context.createLinearGradient(0,250,Math.round(num4),80);
+				linearGrad.addColorStop(0.0,"#FFFFFF");
+				linearGrad.addColorStop(0.01,"#F00A36");
+				linearGrad.addColorStop(0.25,"#4B08F2");
+				linearGrad.addColorStop(0.5,"#F08E8F");
+				linearGrad.addColorStop(0.75,"#08F234");
+				linearGrad.addColorStop(1.0,"#F2F208");
+				context.fillStyle = linearGrad;
+				context.textAlign = "center";
+				context.Baseline = "middle";
+				context.font="bold 75px 隶书";
+				context.fillText("E翔工作室",200,320);
+			    
+			    //*****************
+			}
+
+
+
+				context.lineWidth = 1;
+				context.strokeStyle = "white";
+				context.beginPath();
+				
+				context.moveTo(68, 228);
+				x41 = calculateX41(300,11,68,228,234,201);
+				context.bezierCurveTo(calculateX41(300,11,68,228,234,201), calculateY41(300,11,68,228,234,201),calculateX41(300,11,68,228,307,91), calculateY41(300,11,68,228,307,91), 300, 11);
+				context.bezierCurveTo(calculateX41(68,228,300,11,346, 133), calculateY41(68,228,300,11,346, 133),calculateX41(68,228,300,11,247, 218), calculateY41(68,228,300,11,247, 218), 69, 228);
+				if(swh2 == 1){
+					context.fillStyle = "rgba(242,204,15,"+num2/10+")";
+				}
+				context.closePath();
+				context.stroke();
+				context.fill();
+
+				context.lineWidth = 1;
+				context.strokeStyle = "white";
+				context.beginPath();
+				
+				context.moveTo(152, 229);
+				context.bezierCurveTo(calculateX42(329, 134,153, 229,286, 200), calculateY42(329, 134,153, 229,286, 209),calculateX42(329, 134,153, 229,308,195), calculateY42(329, 134,153, 229,330, 185), 329,134);
+				context.bezierCurveTo(calculateX42(329, 134,153, 229,328, 220), calculateY42(329, 134,153, 229,328, 220),calculateX42(329, 134,153, 229,268, 234), calculateY42(329, 134,153, 229,268, 234), 153, 229);
+				if(swh2 == 1){
+					context.fillStyle = "rgba(28,178,196,"+num2/10+")";
+				}
+				context.closePath();
+				context.stroke();
+				context.fill();
+
+				context.lineWidth = 1;
+				context.strokeStyle = "white";
+				context.beginPath();
+				
+				context.moveTo(172, 236);
+
+				context.bezierCurveTo(199, 247, 215, 245, 258, 241);
+				context.bezierCurveTo(240, 265, 195, 254, 171, 237);
+
+				if(swh2 == 1){
+					context.fillStyle = "rgba(215,60,32,"+num2/10+")";
+				}
+				context.closePath();
+				context.stroke();
+				context.fill();
+
+			}
+			context.restore();
+
+			
+
+			//**************绘制下方小写英文
+			context.beginPath();
+			context.moveTo(20,360);
+			context.lineTo(20+num5,360);
+			context.strokeStyle = "black";
+			context.lineWidth = 1;
+			context.closePath();
+			context.stroke();
+
+			context.beginPath();
+			context.moveTo(380-num5,360);
+			context.lineTo(380,360);
+			context.strokeStyle = "black";
+			context.lineWidth = 1;
+			context.closePath();
+			context.stroke();
+			if(swh5 == 1){
+				context.textAlign = "center";
+			context.Baseline = "middle";
+			context.fillStyle = "black";
+			context.font="bold 50px 方正舒体";
+
+			context.fillText("e",dec1,370);
+			context.fillText("f",dec2,370);
+			context.fillText("l",dec3,370);
+			context.fillText("y",dec4,370);
+			context.fillText("s",dec5,370);
+			context.fillText("t",dec6,370);
+			context.fillText("u",dec7,370);
+			context.fillText("d",dec8,370);
+			context.fillText("i",dec9,370);
+			context.fillText("o",dec10,370);
+
+			}
+			
+			
+
+
+		}
+		function update(){
+			if(firstLineI<300){
+				firstLineI = firstLineI + 8;
+				secondLineI = secondLineI + 6;
+				thirdLineI = thirdLineI + 2.89;
+			}else{
+				//console.log(thirdLineI*7/84+237-172*7/84);
+				swh1 = 1;
+				swh2 = 0;
+				if(num1<22){
+					num1++;
+					num3 = num3 + 1;
+				}else{
+					swh2 = 1;
+					swh3 = 0;
+					if(num2<10){
+						//console.log(swh2);
+						num2++;
+						//console.log(num2);
+					}else{
+						swh3 = 1;
+
+						if(num4<400){
+							num4 = num4 + 4;
+							//console.log(num4);
+							searchLight.x += searchLight.vx;
+							searchLight.y += searchLight.vy;
+
+							if(searchLight.x - searchLight.radius <= 0){
+								searchLight.vx = -searchLight.vx;
+								searchLight.x = searchLight.radius;
+							}
+							if(searchLight.x + searchLight.radius >= canvas.width){
+								searchLight.vx = -searchLight.vx;
+								searchLight.x = canvas.width- searchLight.radius;
+							}
+							if(searchLight.y - searchLight.radius <= 0){
+								searchLight.vy = -searchLight.vy;
+								searchLight.y = searchLight.radius;
+							}
+							if(searchLight.y + searchLight.radius >= canvas.height){
+								searchLight.vy = -searchLight.vy;
+								searchLight.y = canvas.height- searchLight.radius;
+							}
+							swh4 = 0;
+							}else{
+								searchLight.radius = searchLight.radius + 20;
+								swh4 = 1;
+								swh5 = 0;
+								if(num5 < 50){
+									num5 += 1;
+								}else{
+									swh5 = 1;
+									if(dec1<92){
+										dec1 +=5;
+									}else{
+										dec1 = 92;
+									}
+									if(dec2<117){
+										dec2 +=5;
+									}else{
+										dec2 = 117;
+									}
+									if(dec3<134){
+										dec3 +=5;
+									}else{
+										dec3 = 134;
+									}
+									if(dec4<154){
+										dec4 +=5;
+									}else{
+										dec4 = 154;
+									}
+									if(dec5>192){
+										dec5 -=5;
+									}else{
+										dec5 = 192;
+									}
+									if(dec6>215){
+										dec6 -=5;
+									}else{
+										dec6 = 215;
+									}
+									if(dec7>240){
+										dec7 -=5;
+									}else{
+										dec7 = 240;
+									}
+									if(dec8>268){
+										dec8 -=5;
+									}else{
+										dec8 = 268;
+									}
+									if(dec9>290){
+										dec9 -=5;
+									}else{
+										dec9 = 290;
+									}
+									if(dec10>310){
+										dec10 -=5;
+									}else{
+										dec10 = 310;
+									}
+								}
+							}
+					}
+				}
+			}
+		}
+		function calculateX4(x1,y1,x2,y2,x3,y3){
+			return Math.round((y3 + (x2-x1)*x3/(y2-y1)-y2+x2*(y1-y2)/(x1-x2))/((y1-y2)/(x1-x2)+(x1-x2)/(y1-y2)));
+		}
+		function calculateY4(x1,y1,x2,y2,x3,y3){
+			var a = calculateX4(x1,y1,x2,y2,x3,y3);
+			//return Math.round(a*Math.round((y2-y1)/(x2-x1))+y2-Math.round((y2-y1)*x2/(x2-x1)));
+			return Math.round(a*(y2-y1)/(x2-x1)+y2-(y2-y1)*x2/(x2-x1));
+		}
+		function calculateDist(x1,y1,x2,y2,x3,y3){
+			return Math.round(Math.abs((x3-calculateX4(x1,y1,x2,y2,x3,y3))/20));
+		}
+		function calculateX41(x1,y1,x2,y2,x3,y3){
+			return Math.round(calculateX4(x1,y1,x2,y2,x3,y3)+calculateDist(x1,y1,x2,y2,x3,y3)*num1);
+		}
+		function calculateY41(x1,y1,x2,y2,x3,y3){
+			return Math.round(calculateX41(x1,y1,x2,y2,x3,y3)*(x1-x2)/(y2-y1) + y3 + (x2-x1)*x3/(y2-y1));
+		}
+		function calculateX42(x1,y1,x2,y2,x3,y3){
+			return Math.round(calculateX4(x1,y1,x2,y2,x3,y3)+calculateDist(x1,y1,x2,y2,x3,y3)*num3);
+		}
+		function calculateY42(x1,y1,x2,y2,x3,y3){
+			return Math.round(calculateX42(x1,y1,x2,y2,x3,y3)*(x1-x2)/(y2-y1) + y3 + (x2-x1)*x3/(y2-y1));
+		}
+	}
+	</script>
+</head>
+<body style="width:400px;margin:0 auto;">
+	<canvas id="canvas" style="display:block;border:1px solid #ccc;"></canvas>
+</body>
+</html>
